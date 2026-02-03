@@ -13,19 +13,36 @@ Y despues `git push -u origin main`
 
 ## COMANDOS **LARAVEL**
 
-Comando para crear el proyecto laravel `composer create-project laravel/laravel . --prefer-dist --remove-vcs`
+Ejecutar migraciones `docker compose exec -T app php artisan migrate`
 
-Instalar dependencias de laravel `docker compose exec app composer install`
+Crear keys `docker compose exec -T app php artisan key:generate`
 
-Crear migracion para sesiones `docker compose exec app composer install`
-
-Ejecutar migraciones `docker compose exec app php artisan migrate`
+Instalar dependencias `docker compose exec app composer install`
 
 ## COMANDOS **DOCKER**
 
-Primero creamos la imagen `docker compose build app`
+**Primera vez (crear imagen e iniciar):**
+```
+docker compose down -v
+docker compose build app
+docker compose up -d
+docker compose exec -T app php artisan key:generate
+docker compose exec -T app php artisan migrate
+```
 
-Para iniciar el contenedor `docker compose up -d`
+**Iniciar despues:**
+```
+docker compose up -d
+```
+
+**Detener:**
+```
+docker compose down
+```
+
+## ARCHIVOS IMPORTANTES
+
+- `.env` → Archivo de configuración (puedes subirlo si quieres)
 
 
 

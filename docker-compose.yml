@@ -8,17 +8,17 @@ services:
     container_name: daw-app
     restart: unless-stopped
     working_dir: /var/www
+    # Solo monta carpetas específicas necesarias
     volumes:
-      - ./:/var/www
+      - ./storage:/var/www/storage
+      - ./bootstrap/cache:/var/www/bootstrap/cache
     networks:
       - daw-network
-    # Healthcheck para que Nginx espere
     healthcheck:
       test: ["CMD", "php", "-v"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 40s
 
   nginx:
     image: nginx:alpine
@@ -27,11 +27,11 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - ./:/var/www
+      # Solo montar public para Nginx
+      - ./public:/var/www/public
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
-      app:
-        condition: service_healthy
+      - app
     networks:
       - daw-network
 
