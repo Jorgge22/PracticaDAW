@@ -39,11 +39,3 @@ docker compose up -d
 ```
 docker compose down
 ```
-
-## ARCHIVOS IMPORTANTES
-
-- `.env` → Archivo de configuración (puedes subirlo si quieres)
-
-
-
-
