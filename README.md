@@ -2,22 +2,22 @@
 
 ## COMANDOS **GIT**
 
-Primero: ```git clone https://github.com/Jorgge22/PracticaDAW```
+Primero: `git clone https://github.com/Jorgge22/PracticaDAW`
 
 Después **SI** o **SI** hacer `git pull` para descargar los cambios que ha subido el otro.
 
-Cada vez que se cambia algo: ```git add .``` y luego ```git commit -m "mensaje"```
+Cada vez que se cambia algo: `git add .` y luego `git commit -m "mensaje"`
 
-Y despues ```git push -u origin main```
+Y despues `git push -u origin main`
 
 
 ## COMANDOS **LARAVEL**
 
-Ejecutar migraciones ```docker compose exec -T app php artisan migrate```
+Ejecutar migraciones `docker compose exec -T app php artisan migrate`
 
-Crear keys ```docker compose exec -T app php artisan key:generate```
+Crear keys `docker compose exec -T app php artisan key:generate`
 
-Instalar dependencias ```docker compose exec app composer install```
+Instalar dependencias `docker compose exec app composer install`
 
 ## COMANDOS **DOCKER**
 
