@@ -13,6 +13,8 @@ Y despues `git push -u origin main`
 
 ## COMANDOS **LARAVEL**
 
+Comando para crear el proyecto laravel `composer create-project laravel/laravel . --prefer-dist --remove-vcs`
+
 Instalar dependencias de laravel `docker compose exec app composer install`
 
 Crear migracion para sesiones `docker compose exec app composer install`
