@@ -19,6 +19,8 @@ Crear keys `docker compose exec -T app php artisan key:generate`
 
 Instalar dependencias `docker compose exec app composer install`
 
+Crear migraciones `php artisan make:migration create_entrenamiento_table` cambiando el nombre por la tabla que se quiera crear.
+
 ## COMANDOS **DOCKER**
 
 **Primera vez (crear imagen e iniciar):**
