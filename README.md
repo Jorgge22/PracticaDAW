@@ -24,6 +24,10 @@ Ejecutar migraciones `docker compose exec -T app php artisan migrate:fresh`
 
 Para entrar en la base de datos `docker compose exec -it db mysql -u root -p`
 
+Crear un nuevo controlador `php artisan make:controller AutenticarController`
+
+Crear una nueva clase Model `php artisan make:model Ciclista`
+
 ## COMANDOS **DOCKER**
 
 **Primera vez (crear imagen e iniciar):**
