@@ -11,10 +11,12 @@ return new class extends Migration
         Schema::create('entrenamiento', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('id_ciclista')
-                ->constrained('ciclistas') 
-                ->onDelete('restrict')     
-                ->onUpdate('cascade');     
+            $table->unsignedBigInteger('id_ciclista');
+            $table->foreign('id_ciclista')
+                ->references('id')
+                ->on('ciclista')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
 
             $table->foreignId('id_bicicleta')
                 ->constrained('bicicleta') 
