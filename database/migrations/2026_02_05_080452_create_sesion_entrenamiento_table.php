@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('sesion_entrenamiento', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+
+            $table->foreignId('id_plan')
+                ->constrained('plan_entrenamiento')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->date('fecha');
+            $table->string('nombre', 100);
+            $table->string('descripcion', 255);
+            $table->boolean('completada')->default('0');
         });
     }
 

@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('nombre', 80);
             $table->string('apellidos', 80);
             $table->date('fecha_nacimiento');
-            $table->decimal('peso_base', 5, 2);
-            $table->integer('altura_base');
+            $table->decimal('peso_base', 5, 2)->nullable();
+            $table->integer('altura_base')->nullable();
             $table->string('email', 80);
-            $table->string('password', 30); 
+            $table->string('password', 30);
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ciclistas');
+        Schema::dropIfExists('ciclista');
     }
 };

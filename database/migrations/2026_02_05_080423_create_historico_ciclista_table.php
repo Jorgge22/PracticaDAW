@@ -21,13 +21,13 @@ return new class extends Migration
 
             $table->date('fecha');
             $table->decimal('peso', 5, 2);
-            $table->integer('ftp');
-            $table->integer('pulso_max');
-            $table->integer('pulso_reposo');
-            $table->integer('potencia_max');
-            $table->decimal('grasa_corporal', 4, 2);
-            $table->decimal('vo2max', 4, 1);
-            $table->string('comentario', '255');
+            $table->integer('ftp')->nullable();
+            $table->integer('pulso_max')->nullable();
+            $table->integer('pulso_reposo')->nullable();
+            $table->integer('potencia_max')->nullable();
+            $table->decimal('grasa_corporal', 4, 2)->nullable();
+            $table->decimal('vo2max', 4, 1)->nullable();
+            $table->string('comentario', '255')->nullable();
 
             $table->unique(['id_ciclista', 'fecha'], 'uq_ciclista_fecha');
         });
