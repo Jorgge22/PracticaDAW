@@ -20,7 +20,9 @@ Instalar dependencias `docker compose exec app composer install`
 
 Crear migraciones `php artisan make:migration create_entrenamiento_table` cambiando el nombre por la tabla que se quiera crear.
 
-Para entrar en la base de datos `docker compose exec -it db mysql -u root -p` 
+Ejecutar migraciones `docker compose exec -T app php artisan migrate:fresh`
+
+Para entrar en la base de datos `docker compose exec -it db mysql -u root -p`
 
 ## COMANDOS **DOCKER**
 
