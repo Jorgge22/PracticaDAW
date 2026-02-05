@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('bloque_entrenamiento', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('nombre', '100');
+            $table->string('descripcion', '255');
+            $table->enum('tipo', ['rodaje', 'intervalos', 'fuerza', 'recuperacion', 'test']);
+            $table->date('duracion_estimada');
+            $table->decimal('potencia_pct_min');
+            $table->decimal('potencia_pct_max');
+            $table->decimal('pulso_pct_max');
+            $table->decimal('pulso_reserva_pct');
+            $table->string('comentario', '255');
         });
     }
 
