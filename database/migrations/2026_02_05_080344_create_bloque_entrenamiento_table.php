@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('descripcion', '255');
             $table->enum('tipo', ['rodaje', 'intervalos', 'fuerza', 'recuperacion', 'test']);
             $table->date('duracion_estimada');
-            $table->decimal('potencia_pct_min');
-            $table->decimal('potencia_pct_max');
-            $table->decimal('pulso_pct_max');
-            $table->decimal('pulso_reserva_pct');
+            $table->decimal('potencia_pct_min', 5,2);
+            $table->decimal('potencia_pct_max', 5,2);
+            $table->decimal('pulso_pct_max', 5,2);
+            $table->decimal('pulso_reserva_pct', 5,2);
             $table->string('comentario', '255');
         });
     }
