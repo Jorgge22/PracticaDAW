@@ -8,10 +8,16 @@ services:
     container_name: daw-app
     restart: unless-stopped
     working_dir: /var/www
-    # Solo monta carpetas específicas necesarias
+    # Solo monta carpetas especificas necesarias
     volumes:
+      - ./.env:/var/www/.env
       - ./storage:/var/www/storage
       - ./bootstrap/cache:/var/www/bootstrap/cache
+      - ./database:/var/www/database
+      - ./routes:/var/www/routes
+      - ./app:/var/www/app
+      - ./resources:/var/www/resources
+      - ./config:/var/www/config
     networks:
       - daw-network
     healthcheck:

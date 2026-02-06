@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AutenticarController extends Controller
+class LoginController extends Controller
 {
     public function mostrarLogin()
     {
@@ -31,8 +32,7 @@ class AutenticarController extends Controller
         } else {
             // Si el objecto ciclista existe con el nombre y contraseña correcto se crea la sesion y se redirige a la pantalla principal
             session(['id_ciclista' => $ciclista->id]);
-            return redirect('/'); // TODO poner ruta de la página donde se mostrarán las listas
-            // TODO crea una ruta en web.php para la página principal y ponla aquí
+            return redirect('/menu');
         }
     }
 
