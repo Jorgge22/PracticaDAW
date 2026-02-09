@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS ciclista (
     peso_base        DECIMAL(5,2),
     altura_base      INT,
     email 		VARCHAR(80) NOT NULL, 
-    password 	VARCHAR(30) NOT NULL
+    password 	VARCHAR(60) NOT NULL
 ) ENGINE=InnoDB;
 
 -- Histórico de ciclista
