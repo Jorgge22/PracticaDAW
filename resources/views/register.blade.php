@@ -9,6 +9,18 @@
     <div class="container">
         <h1>Registro de ciclista</h1>
 
+        <!-- Mostrar mensaje de error por contraseña corta -->
+        @if ($errors->any()) {
+            <div>
+                <p>Errores:</p>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </div>
+        }
+        
+        @endif
+
         <form action="{{ route('register.submit') }}" method="post">
             @csrf
             <input type="text" name="nombre" placeholder="Nombre" required><br><br>
@@ -17,7 +29,7 @@
             <input type="email" name="email" placeholder="Email" required><br><br>
             <input type="password" name="password" placeholder="Contraseña" required><br><br>
             <input type="submit" value="Registrarse">
-        </form>
+        </form> <br>
         <button type="button"><a href="{{ route('login.form') }}">Volver al login</a></button>
     </div>
 </body>

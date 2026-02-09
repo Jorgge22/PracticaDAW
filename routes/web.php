@@ -18,9 +18,11 @@ Route::get('/api/menus', [MenuController::class, 'obtenerMenus'])->name('api.men
 Route::get('/api/planes', [MenuController::class, 'obtenerPlanes'])->name('api.planes');
 Route::get('/api/sesiones', [MenuController::class, 'obtenerSesiones'])->name('api.sesiones');
 
-// Rutas para el login, registro y cierre de sesión
+// Rutas para el login y cierre de sesión
 Route::get('/login', [LoginController::class, 'mostrarLogin'])->name('login.form');
 Route::post('/login', [LoginController::class, 'procesarLogin'])->name('login.submit');
 Route::post('/logout', [LoginController::class, 'cerrarSesion'])->name('login.cerrar');
+
+// Rutas para el registro
 Route::get('/register', [LoginController::class, 'mostrarRegistro'])->name('register.form');
 Route::post('/register', [LoginController::class, 'procesarRegistro'])->name('register.submit');

@@ -8,68 +8,6 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/menu-dinamico.css') }}">
-    
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
-        }
-        
-        .header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        
-        .logout-btn {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        
-        .logout-btn:hover {
-            background-color: #c0392b;
-        }
-        
-        .container {
-            display: flex;
-            min-height: 100vh;
-        }
-        
-        #menu-container {
-            flex: 0 0 auto;
-        }
-        
-        #content-container {
-            flex: 1 1 auto;
-            overflow-y: auto;
-        }
-        
-        .usuario-info {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: white;
-            padding: 10px 15px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-    </style>
 </head>
 <body>
 
