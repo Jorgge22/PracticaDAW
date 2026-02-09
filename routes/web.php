@@ -13,11 +13,6 @@ Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
 // Mostrar contenido cuando se selecciona un menu o submenu
 Route::get('/menu/{ruta}', [MenuController::class, 'show'])->name('menu.show');
 
-// Rutas API para obtener menús dinámicos desde BD
-Route::get('/api/menus', [MenuController::class, 'obtenerMenus'])->name('api.menus');
-Route::get('/api/planes', [MenuController::class, 'obtenerPlanes'])->name('api.planes');
-Route::get('/api/sesiones', [MenuController::class, 'obtenerSesiones'])->name('api.sesiones');
-
 // Rutas para el login y cierre de sesión
 Route::get('/login', [LoginController::class, 'mostrarLogin'])->name('login.form');
 Route::post('/login', [LoginController::class, 'procesarLogin'])->name('login.submit');

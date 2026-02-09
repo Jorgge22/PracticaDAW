@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre', 100);
             $table->string('descripcion', 255)->nullable();
             $table->enum('tipo', ['rodaje', 'intervalos', 'fuerza', 'recuperacion', 'test']);
-            $table->date('duracion_estimada')->nullable();
+            $table->time('duracion_estimada')->nullable();
             $table->decimal('potencia_pct_min', 5,2)->nullable();
             $table->decimal('potencia_pct_max', 5,2)->nullable();
             $table->decimal('pulso_pct_max', 5,2)->nullable();
