@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -41,5 +42,43 @@ class LoginController extends Controller
         // Olvidamos la sesión antes creada y redirigimos a la página de login
         session()->forget('id_ciclista');
         return redirect('/login');
+    }
+
+    // Mostrar formulario de registro
+    public function mostrarRegistro()
+    {
+        return view('register');
+    }
+
+    // Registro de nuevo ciclista
+    public function procesarRegistro(Request $request)
+    {
+        // Por si esta repetido
+        $data = $request->validate([
+            'nombre' => 'required|string|max:80',
+            'apellidos' => 'required|string|max:80',
+            'fecha_nacimiento' => 'required|date',
+            'email' => 'required|email|max:80|unique:ciclista,email', // mail unico en la tabla ciclista
+            'password' => 'required|string|min:4',
+        ]);
+
+        try {
+            // Intentar insertar el nuevo ciclista
+            $inserted = DB::table('ciclista')->insert([
+                'nombre' => $data['nombre'],
+                'apellidos' => $data['apellidos'],
+                'fecha_nacimiento' => $data['fecha_nacimiento'],
+                'peso_base' => null,
+                'altura_base' => null,
+                'email' => $data['email'],
+                'password' => $data['password'],
+            ]);
+
+            // TODO Si la insercion fue exitosa redirigir al login con mensaje de exito
+            
+        } catch (Exception $e) {
+            // Si hay un error SQL u otro, mostrar mensaje de error
+            return back()->withErrors(['error' => 'Error al registrar: ' . $e->getMessage()]);
+        }
     }
 }
