@@ -25,4 +25,20 @@ class Ciclista extends Model
     protected $dates = [
         'fecha_nacimiento',
     ];
+
+    // Relaciones
+    public function planes()
+    {
+        return $this->hasMany(PlanEntrenamiento::class, 'id_ciclista');
+    }
+
+    public function historico()
+    {
+        return $this->hasMany(HistoricoCiclista::class, 'id_ciclista');
+    }
+
+    public function entrenamientos()
+    {
+        return $this->hasMany(Entrenamiento::class, 'id_ciclista');
+    }
 }

@@ -56,3 +56,30 @@ docker compose up -d
 ```docker
 docker compose down
 ```
+
+## Posible menu
+
+```
+Mis Planes
+  ├─ Plan 1 (del usuario actual)
+  ├─ Plan 2
+  └─ + Crear nuevo plan
+
+Mis Sesiones
+  ├─ Sesión 1 (asignadas al usuario)
+  ├─ Sesión 2
+  └─ + Crear nueva sesión
+
+Mis Bloques
+  ├─ Bloque 1
+  ├─ Bloque 2
+  └─ + Crear nuevo bloque
+
+Resultados
+  ├─ Ver mis resultados
+  └─ Registrar resultado
+
+Perfil
+  ├─ Ver perfil
+  └─ Editar perfil
+  ````

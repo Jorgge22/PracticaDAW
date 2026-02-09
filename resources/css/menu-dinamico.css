@@ -1,0 +1,168 @@
+/* Estilos para menús dinámicos */
+
+.navbar {
+    background-color: #2c3e50;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-principal {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.menu-item {
+    position: relative;
+}
+
+.menu-item > a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.menu-item > a:hover {
+    background-color: #34495e;
+}
+
+/* Submenús */
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #34495e;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.submenu.activo {
+    display: block;
+}
+
+.submenu-item {
+    border-bottom: 1px solid #2c3e50;
+}
+
+.submenu-item:last-child {
+    border-bottom: none;
+}
+
+.submenu-item a {
+    display: block;
+    padding: 12px 20px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.submenu-item a:hover {
+    background-color: #1a252f;
+    padding-left: 25px;
+}
+
+/* Información del usuario */
+.usuario-info {
+    padding: 15px 20px;
+    background-color: #2c3e50;
+    color: white;
+    text-align: right;
+    font-size: 14px;
+}
+
+.usuario-info .nombre {
+    font-weight: bold;
+    display: block;
+}
+
+.usuario-info .email {
+    color: #bdc3c7;
+    font-size: 12px;
+}
+
+/* Contenido principal */
+#content-container {
+    padding: 30px;
+    background-color: #ecf0f1;
+    min-height: 500px;
+}
+
+.contenido-menu {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contenido-menu h2 {
+    color: #2c3e50;
+    margin-top: 0;
+}
+
+.auxiliares {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-left: 4px solid #3498db;
+    margin: 15px 0;
+}
+
+.auxiliares ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.auxiliares li {
+    padding: 5px 0;
+}
+
+/* Botones */
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu-principal {
+        flex-direction: column;
+    }
+
+    .menu-item > a {
+        padding: 12px 15px;
+    }
+
+    .submenu {
+        position: static;
+        box-shadow: none;
+        background-color: #2c3e50;
+    }
+
+    .submenu-item a {
+        padding-left: 40px;
+    }
+
+    .submenu-item a:hover {
+        padding-left: 45px;
+    }
+}
