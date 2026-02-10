@@ -18,6 +18,8 @@ Crear keys `docker compose exec -T app php artisan key:generate`
 
 Instalar dependencias `docker compose exec app composer install`
 
+Instalar autenticación `docker compose exec app composer require laravel/ui --with-all-dependencies`
+
 Crear migraciones `php artisan make:migration create_entrenamiento_table` cambiando el nombre por la tabla que se quiera crear.
 
 Ejecutar los seed `docker compose exec -T app php artisan db:seed`
