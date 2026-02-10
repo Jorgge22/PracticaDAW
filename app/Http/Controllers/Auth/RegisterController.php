@@ -11,27 +11,23 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    // Eliminar "use RegistersUsers;" y hacerlo manual
-
-    protected $redirectTo = '/home';
-
     public function __construct()
     {
         $this->middleware('guest');
     }
 
     /**
-     * Show the registration form.
+     * Mostrar el formulario de registro
      */
-    public function showRegistrationForm()
+    public function mostrarRegistro()
     {
         return view('auth.register');
     }
 
     /**
-     * Handle a registration request.
+     * Procesar el registro
      */
-    public function register(Request $request)
+    public function registrarse(Request $request)
     {
         $this->validator($request->all())->validate();
 
@@ -45,8 +41,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:ciclista'],
+            'nombre' => ['required', 'string', 'max:80'],
+            'apellido' => ['required', 'string', 'max:80'],
+            'fecha_nacimiento' => ['required', 'date'],
+            'email' => ['required', 'string', 'email', 'max:80', 'unique:ciclista'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -54,9 +52,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return Ciclista::create([
-            'nombre' => $data['name'], 
-            'apellidos' => '', 
-            'fecha_nacimiento' => now()->subYears(25), 
+            'nombre' => $data['nombre'], 
+            'apellidos' => $data['apellido'], 
+            'fecha_nacimiento' => $data['fecha_nacimiento'], 
             'peso_base' => null,
             'altura_base' => null,
             'email' => $data['email'],
@@ -69,6 +67,17 @@ class RegisterController extends Controller
      */
     protected function redirectPath()
     {
-        return $this->redirectTo;
+        return '/home';
+    }
+
+    // Alias methods expected by Laravel's Auth routes
+    public function showRegistrationForm()
+    {
+        return $this->mostrarRegistro();
+    }
+
+    public function register(Request $request)
+    {
+        return $this->registrarse($request);
     }
 }

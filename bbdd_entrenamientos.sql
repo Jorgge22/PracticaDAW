@@ -219,13 +219,13 @@ CREATE TABLE entrenamiento (
 -- Inserción de ciclistas
 INSERT INTO ciclista (nombre, apellidos, fecha_nacimiento, peso_base, altura_base, email, password)
 VALUES
-('Juan', 'Pérez', '1990-05-10', 70.5, 175, 'test1@prueba.com', 'prueba'),
-('Ana', 'Rodríguez', '1992-08-20', 60.0, 165, 'test2@prueba.com', 'prueba'),
-('Pedro', 'García', '1995-03-15', 80.0, 180, 'test3@prueba.com', 'prueba'),
-('Carmen', 'García', '1998-09-05', 55.0, 160, 'test4@prueba.com', 'prueba'),
-('Luis', 'Rodríguez', '1972-09-15', 62.0, 170, 'test5@prueba.com', 'prueba'),
-('Maria', 'Rodríguez', '1972-09-15', 62.0, 170, 'test6@prueba.com', 'prueba'),
-('Ricardo', 'García', '1982-09-15', 72.0, 170, 'test7@prueba.com', 'prueba');
+('Juan', 'Pérez', '1990-05-10', 70.5, 175, 'test1@prueba.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'), -- password
+('Ana', 'Rodríguez', '1992-08-20', 60.0, 165, 'test2@prueba.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'), -- password
+('Pedro', 'García', '1995-03-15', 80.0, 180, 'test3@prueba.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'), -- password
+('Carmen', 'García', '1998-09-05', 55.0, 160, 'test4@prueba.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'), -- password
+('Luis', 'Rodríguez', '1972-09-15', 62.0, 170, 'test5@prueba.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'), -- password
+('Maria', 'Rodríguez', '1972-09-15', 62.0, 170, 'test6@prueba.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'), -- password
+('Ricardo', 'García', '1982-09-15', 72.0, 170, 'test7@prueba.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'); -- password
 
 -- Histórico de ciclistas
 INSERT INTO historico_ciclista
