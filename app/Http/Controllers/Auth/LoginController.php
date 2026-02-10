@@ -3,83 +3,67 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Exception;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function mostrarLogin()
+    use AuthenticatesUsers;
+
+    protected $redirectTo = '/home';
+
+    public function __construct()
     {
-        // La peticion pasa por el controlador y devuelve directamente la vista de login
-        return view('login');
+        $this->middleware('guest')->except('logout');
     }
 
-    public function procesarLogin(Request $request)
+    /**
+     * Get the login username to be used by the controller.
+     * Por defecto es 'email', pero si tu columna tiene otro nombre, ajústalo.
+     *
+     * @return string
+     */
+    public function username()
     {
-        // Recibimos los datos que se han escrito en el formulario
-        $nombre = $request->input('nombre');
-        $contraseña = $request->input('contraseña');
-
-        // Comprobamos los datos introducimos con los datos que hay en la base de datos
-        $ciclista = DB::table('ciclista')
-            ->where('nombre', $nombre)
-            ->where('password', $contraseña)
-            ->first();
-
-        if (!$ciclista) {
-            return back()->withErrors(['error' => 'Credenciales incorrectas']);
-        } else {
-            // Si el objecto ciclista existe con el nombre y contraseña correcto se crea la sesion y se redirige a la pantalla principal
-            session(['id_ciclista' => $ciclista->id]);
-            return redirect('/menu');
-        }
+        return 'email'; // Si tu columna se llama 'correo' o similar, cámbialo aquí
     }
 
-    public function cerrarSesion()
+    /**
+     * Get the guard to be used during authentication.
+     * Esto asegura que use el guard configurado para ciclista.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
     {
-        // Olvidamos la sesión antes creada y redirigimos a la página de login
-        session()->forget('id_ciclista');
-        return redirect('/login');
+        return Auth::guard();
     }
 
-    public function mostrarRegistro()
+    /**
+     * Validate the user login request.
+     * Puedes personalizar las reglas de validación si es necesario.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function validateLogin(Request $request)
     {
-        return view('register');
-    }
-
-    public function procesarRegistro(Request $request)
-    {
-        // Comprobar si esta repetido
-        $data = $request->validate([
-            'nombre' => 'required|string|max:80',
-            'apellidos' => 'required|string|max:80',
-            'fecha_nacimiento' => 'required|date',
-            'email' => 'required|email|max:80|unique:ciclista,email', // email unico en la tabla ciclista
-            'password' => 'required|string|min:4',
+        $request->validate([
+            $this->username() => 'required|string',
+            'password' => 'required|string',
         ]);
+    }
 
-        try {
-            // Intentar insertar el nuevo ciclista
-            $insertado = DB::table('ciclista')->insert([
-                'nombre' => $data['nombre'],
-                'apellidos' => $data['apellidos'],
-                'fecha_nacimiento' => $data['fecha_nacimiento'],
-                'peso_base' => null,
-                'altura_base' => null,
-                'email' => $data['email'],
-                'password' => $data['password'],
-            ]);
-
-            // Si la insercion fue exitosa redirigir al login
-            if ($insertado) {
-                return redirect('/login');
-            } else {
-                return redirect('/register');
-            }
-
-        } catch (Exception $e) {
-            return back()->withErrors(['error' => 'Error al registrar: ' . $e->getMessage()]);
-        }
+    /**
+     * Get the needed authorization credentials from the request.
+     * Ajusta según los nombres de tus columnas.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        return $request->only($this->username(), 'password');
     }
 }

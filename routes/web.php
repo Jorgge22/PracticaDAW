@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MenuController;
+use Illuminate\Support\Facades\Auth; 
 
 Route::get('/', function () {
-    return view('login');
+    return view('home');
 });
 
 // Ruta del menu (pagina principal con las listas)
@@ -32,3 +33,7 @@ Route::prefix('api')->group(function () {
     Route::get('/resultados', [MenuController::class, 'obtenerResultados']);
     Route::get('/perfil', [MenuController::class, 'obtenerPerfil']);
 });
+
+Auth::routes(); // Esta línea ahora funcionará
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

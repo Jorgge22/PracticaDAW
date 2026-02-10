@@ -8,6 +8,7 @@ use App\Models\SesionEntrenamiento;
 use App\Models\BloqueEntrenamiento;
 use App\Models\Bicicleta;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -16,13 +17,8 @@ class MenuController extends Controller
 {
     public function index()
     {
-        // Validar que el usuario tiene sesión, si no, redirigir a login
-        if (!session()->has('id_ciclista')) {
-            return redirect('/login');
-        }
-
-        // Obtener el id del ciclista
-        $idCiclista = session('id_ciclista');
+        // Obtener el id del ciclista autenticado
+        $idCiclista = Auth::user()->id;
 
         $planes = DB::table('plan_entrenamiento')
             ->where('id_ciclista', $idCiclista)
@@ -59,10 +55,6 @@ class MenuController extends Controller
 
     public function show($ruta)
     {
-        // Validar que el usuario tiene sesión
-        if (!session()->has('id_ciclista')) {
-            return redirect('/login');
-        }
         return response()->json([
             'ruta' => $ruta,
             'contenido' => 'Contenido del menú: ' . $ruta
@@ -71,7 +63,7 @@ class MenuController extends Controller
 
     public function obtenerMenus()
     {
-        $idCiclista = session('id_ciclista');
+        $idCiclista = Auth::user()->id;
 
         return response()->json([
             'planes' => [
@@ -106,7 +98,7 @@ class MenuController extends Controller
 
     public function obtenerPlanes()
     {
-        $idCiclista = session('id_ciclista');
+        $idCiclista = Auth::user()->id;
         $planes = DB::table('plan_entrenamiento')
             ->where('id_ciclista', $idCiclista)
             ->get();
@@ -116,7 +108,7 @@ class MenuController extends Controller
 
     public function obtenerSesiones()
     {
-        $idCiclista = session('id_ciclista');
+        $idCiclista = Auth::user()->id;
 
         $sesiones = DB::table('sesion_entrenamiento as s')
             ->join('plan_entrenamiento as p', 's.id_plan', '=', 'p.id')
@@ -141,7 +133,7 @@ class MenuController extends Controller
 
     public function obtenerResultados()
     {
-        $idCiclista = session('id_ciclista');
+        $idCiclista = Auth::user()->id;
         $resultados = DB::table('entrenamiento')
             ->where('id_ciclista', $idCiclista)
             ->get();
@@ -151,7 +143,7 @@ class MenuController extends Controller
 
     public function obtenerPerfil()
     {
-        $idCiclista = session('id_ciclista');
+        $idCiclista = Auth::user()->id;
         $perfil = DB::table('ciclista')
             ->where('id', $idCiclista)
             ->first();
