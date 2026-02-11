@@ -29,9 +29,10 @@ class HistoricoCiclista extends Model
         'fecha',
     ];
 
-    // Relaciones
+    // Relaciones foreign key
     public function ciclista()
     {
+        // Relación de pertenencia con el modelo Ciclista
         return $this->belongsTo(Ciclista::class, 'id_ciclista');
     }
 }

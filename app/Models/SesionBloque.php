@@ -22,11 +22,13 @@ class SesionBloque extends Model
     // Relaciones
     public function sesion()
     {
+        // Relación de pertenencia con el modelo SesionEntrenamiento
         return $this->belongsTo(SesionEntrenamiento::class, 'id_sesion_entrenamiento');
     }
 
     public function bloque()
     {
+        // Relación de pertenencia con el modelo BloqueEntrenamiento
         return $this->belongsTo(BloqueEntrenamiento::class, 'id_bloque_entrenamiento');
     }
 }

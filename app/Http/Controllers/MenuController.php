@@ -20,29 +20,36 @@ class MenuController extends Controller
         // Obtener el id del ciclista autenticado
         $idCiclista = Auth::user()->id;
 
+        // Obtener los planes de entrenamiento del ciclista
         $planes = DB::table('plan_entrenamiento')
             ->where('id_ciclista', $idCiclista)
             ->get();
-
+        
+        // Obtener las sesiones con el nombre del plan
         $sesiones = DB::table('sesion_entrenamiento as s')
             ->join('plan_entrenamiento as p', 's.id_plan', '=', 'p.id')
             ->where('p.id_ciclista', $idCiclista)
             ->select('s.*', 'p.nombre as plan_nombre')
             ->get();
 
+        // Obtener los entrenamientos del ciclista
         $entrenamientos = DB::table('entrenamiento')
             ->where('id_ciclista', $idCiclista)
             ->get();
 
+        // Obtener las bicicletas del ciclista
         $bicicletas = DB::table('bicicleta')->get();
 
+        // Obtener los bloques de entrenamiento
         $bloques = DB::table('bloque_entrenamiento')->get();
 
+        // Obtener el histórico del ciclista
         $historico = DB::table('historico_ciclista')
             ->where('id_ciclista', $idCiclista)
             ->orderBy('fecha', 'desc')
             ->get();
 
+            // Retornar la vista del menú con los datos obtenidos
         return view('menu', [
             'planes' => $planes,
             'sesiones' => $sesiones,
@@ -55,6 +62,7 @@ class MenuController extends Controller
 
     public function show($ruta)
     {
+        // Ejemplo de respuesta para cada ruta del menú
         return response()->json([
             'ruta' => $ruta,
             'contenido' => 'Contenido del menú: ' . $ruta
@@ -63,12 +71,14 @@ class MenuController extends Controller
 
     public function obtenerMenus()
     {
+        // Obtener el id del ciclista autenticado
         $idCiclista = Auth::user()->id;
 
+        // Retornar la estructura del menú con los datos obtenidos
         return response()->json([
             'planes' => [
-                'nombre' => 'Mis Planes',
-                'cantidad' => DB::table('plan_entrenamiento')->where('id_ciclista', $idCiclista)->count()
+                'nombre' => 'Mis Planes', // Nombre del menú
+                'cantidad' => DB::table('plan_entrenamiento')->where('id_ciclista', $idCiclista)->count() // Cantidad del ciclista
             ],
             'sesiones' => [
                 'nombre' => 'Mis Sesiones',

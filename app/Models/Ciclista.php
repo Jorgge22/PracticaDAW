@@ -27,19 +27,22 @@ class Ciclista extends Authenticatable
         'fecha_nacimiento',
     ];
 
-    // Relaciones
+    // Relaciones foreign key
     public function planes()
     {
+        // Relación de uno a muchos con el modelo PlanEntrenamiento
         return $this->hasMany(PlanEntrenamiento::class, 'id_ciclista');
     }
 
     public function historico()
     {
+        // Relación de uno a muchos con el modelo HistoricoCiclista
         return $this->hasMany(HistoricoCiclista::class, 'id_ciclista');
     }
 
     public function entrenamientos()
     {
+        // Relación de uno a muchos con el modelo Entrenamiento
         return $this->hasMany(Entrenamiento::class, 'id_ciclista');
     }
 }

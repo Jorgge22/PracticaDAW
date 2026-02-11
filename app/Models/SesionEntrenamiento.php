@@ -28,9 +28,10 @@ class SesionEntrenamiento extends Model
         'completada' => 'boolean',
     ];
 
-    // Relaciones
+    // Relaciones foreign key
     public function plan()
     {
+        // Relación de pertenencia con el modelo PlanEntrenamiento
         return $this->belongsTo(PlanEntrenamiento::class, 'id_plan');
     }
 
@@ -46,11 +47,13 @@ class SesionEntrenamiento extends Model
 
     public function sesionesBloque()
     {
+        // Relación de uno a muchos con el modelo SesionBloque
         return $this->hasMany(SesionBloque::class, 'id_sesion_entrenamiento');
     }
 
     public function entrenamientos()
     {
+        // Relación de uno a muchos con el modelo Entrenamiento
         return $this->hasMany(Entrenamiento::class, 'id_sesion');
     }
 }
