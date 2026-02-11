@@ -36,7 +36,7 @@
                     </table>
 
                     <a href="{{ url('/home') }}" class="btn btn-primary">{{ __('Volver al Inicio') }}</a>
-                    <a href="{{ url('/edit') }}" class="btn btn-primary">{{ __('Editar perfil') }}</a>
+                    <a href="{{ url('/perfil/edit') }}" class="btn btn-primary">{{ __('Editar perfil') }}</a>
                 </div>
             </div>
         </div>

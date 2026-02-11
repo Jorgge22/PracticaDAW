@@ -20,11 +20,11 @@ Auth::routes();
 
 // Pagina de inicio después de login
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/edit', [PerfilController::class, 'edit'])->name('perfil.edit');
-Route::put('/update', [PerfilController::class, 'update'])->name('perfil.update');
 
 // Perfil del usuario
 Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil')->middleware('auth'); //middleware para proteger la ruta y que solo usuarios autenticados puedan acceder
+Route::get('/perfil/edit', [PerfilController::class, 'edit'])->name('perfil.edit');
+Route::put('/perfil/update', [PerfilController::class, 'update'])->name('perfil.update');
 
 // Rutas para la API
 Route::prefix('api')->group(function () {
