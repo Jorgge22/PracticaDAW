@@ -17,9 +17,10 @@ class TipoComponente extends Model
         'descripcion'
     ];
 
-    // Relaciones
+    // Relaciones foreign key
     public function componentes()
     {
+        // Relación de uno a muchos con el modelo ComponentesBicicleta
         return $this->hasMany(ComponentesBicicleta::class, 'id_tipo_componente');
     }
 }

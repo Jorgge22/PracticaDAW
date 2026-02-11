@@ -6,8 +6,13 @@ use App\Http\Controllers\PerfilController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 
+// Ruta principal que redirige al login o al home dependiendo de si el usuario está autenticado
 Route::get('/', function () {
-    return auth()->check() ? redirect()->route('home') : redirect()->route('login');
+    if (Auth::check()) {
+        return redirect()->route('home');
+    } else {
+        return redirect()->route('login');
+    }
 });
 
 // Rutas de autenticación (login, registro, etc.)
@@ -19,7 +24,7 @@ Route::get('/edit', [PerfilController::class, 'edit'])->name('perfil.edit');
 Route::put('/update', [PerfilController::class, 'update'])->name('perfil.update');
 
 // Perfil del usuario
-Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil')->middleware('auth');
+Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil')->middleware('auth'); //middleware para proteger la ruta y que solo usuarios autenticados puedan acceder
 
 // Rutas para la API
 Route::prefix('api')->group(function () {

@@ -37,14 +37,16 @@ class ComponentesBicicleta extends Model
         'activo' => 'boolean',
     ];
 
-    // Relaciones
+    // Relaciones foreign key
     public function bicicleta()
     {
+        // Relación de pertenencia con el modelo Bicicleta
         return $this->belongsTo(Bicicleta::class, 'id_bicicleta');
     }
 
     public function tipoComponente()
     {
+        // Relación de pertenencia con el modelo TipoComponente
         return $this->belongsTo(TipoComponente::class, 'id_tipo_componente');
     }
 }

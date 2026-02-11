@@ -35,19 +35,22 @@ class Entrenamiento extends Model
         'fecha',
     ];
 
-    // Relaciones
+    // Relaciones foreign key
     public function ciclista()
     {
+        // Relación de pertenencia con el modelo Ciclista
         return $this->belongsTo(Ciclista::class, 'id_ciclista');
     }
 
     public function bicicleta()
     {
+        // Relación de pertenencia con el modelo Bicicleta
         return $this->belongsTo(Bicicleta::class, 'id_bicicleta');
     }
 
     public function sesion()
     {
+        // Relación de pertenencia con el modelo SesionEntrenamiento
         return $this->belongsTo(SesionEntrenamiento::class, 'id_sesion');
     }
 }

@@ -12,6 +12,6 @@ class CiclistasSeeder extends Seeder
      */
     public function run(): void
     {
-        Ciclista::factory()->count(3)->create();
+        Ciclista::factory()->count(10)->create();
     }
 }

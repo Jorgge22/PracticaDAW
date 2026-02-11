@@ -18,14 +18,16 @@ class Bicicleta extends Model
         'comentario'
     ];
 
-    // Relaciones
+    // Relaciones foreign key
     public function componentes()
     {
+        // Relación de uno a muchos con el modelo ComponentesBicicleta
         return $this->hasMany(ComponentesBicicleta::class, 'id_bicicleta');
     }
 
     public function entrenamientos()
     {
+        // Relación de uno a muchos con el modelo Entrenamiento
         return $this->hasMany(Entrenamiento::class, 'id_bicicleta');
     }
 }

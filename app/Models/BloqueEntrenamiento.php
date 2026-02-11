@@ -24,7 +24,7 @@ class BloqueEntrenamiento extends Model
         'comentario'
     ];
 
-    // Relaciones
+    // Relaciones foreign key
     public function sesiones()
     {
         return $this->belongsToMany(
@@ -37,6 +37,7 @@ class BloqueEntrenamiento extends Model
 
     public function sesionesBloque()
     {
+        // Relación de uno a muchos con el modelo SesionBloque
         return $this->hasMany(SesionBloque::class, 'id_bloque_entrenamiento');
     }
 }
