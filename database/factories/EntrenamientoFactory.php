@@ -3,6 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Ciclista;
+use App\Models\Bicicleta;
+use App\Models\SesionEntrenamiento;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Entrenamiento>
@@ -17,15 +20,22 @@ class EntrenamientoFactory extends Factory
     public function definition(): array
     {
         return [
-            'fecha' => now(),
-            'duracion' => '01:00:00',
-            'kilometros' => 20.00,
-            'recorrido' => 'Ruta de prueba',
-            'comentario' => null,
-            'id_bicicleta' => 1,
+            'id_ciclista' => Ciclista::inRandomOrder()->first()->id ?? 1,
+            'id_bicicleta' => Bicicleta::inRandomOrder()->first()->id ?? 1,
             'id_sesion' => null,
-            'potencia_normalizada' => 200,
-            'velocidad_media' => 25.00
+            'fecha' => $this->faker->dateTime(),
+            'duracion' => sprintf('%02d:%02d:00', $this->faker->numberBetween(0, 3), $this->faker->numberBetween(0, 59)),
+            'kilometros' => $this->faker->randomFloat(2, 10, 150),
+            'recorrido' => $this->faker->city() . ' - ' . $this->faker->city(),
+            'pulso_medio' => $this->faker->optional()->numberBetween(120, 160),
+            'pulso_max' => $this->faker->optional()->numberBetween(160, 195),
+            'potencia_media' => $this->faker->optional()->numberBetween(150, 280),
+            'potencia_normalizada' => $this->faker->numberBetween(160, 300),
+            'velocidad_media' => $this->faker->randomFloat(2, 20, 40),
+            'puntos_estres_tss' => $this->faker->optional()->randomFloat(2, 50, 300),
+            'factor_intensidad_if' => $this->faker->optional()->randomFloat(3, 0.6, 1.2),
+            'ascenso_metros' => $this->faker->optional()->numberBetween(50, 1500),
+            'comentario' => $this->faker->optional()->sentence(),
         ];
     }
 }

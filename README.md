@@ -43,8 +43,7 @@ docker compose down -v
 docker compose build app
 docker compose up -d
 docker compose exec -T app php artisan key:generate
-docker compose exec -T app php artisan db:seed
-docker compose exec -T app php artisan migrate:fresh
+docker compose exec app php artisan migrate:fresh --seed
 ```
 
 **Iniciar despues:**

@@ -21,8 +21,10 @@ class CiclistaFactory extends Factory
             'nombre' => $this->faker->firstName(),
             'apellidos' => $this->faker->lastName() . ' ' . $this->faker->lastName(),
             'fecha_nacimiento' => $this->faker->date('Y-m-d', '-25 years'),
+            'peso_base' => $this->faker->optional()->randomFloat(2, 55, 95),
+            'altura_base' => $this->faker->optional()->numberBetween(160, 195),
             'email' => $this->faker->unique()->safeEmail(),
-            'password' => Hash::make('12345678'), // Contraseña por defecto para pruebas encriptada
+            'password' => Hash::make('12345678'),
         ];
     }
 }
