@@ -46,7 +46,7 @@ class SesionesController extends Controller
         $validated = $request->validate([
             'id_plan' => 'required|integer|exists:plan_entrenamiento,id',
             'nombre' => 'required|string|max:255',
-            'descripcion' => 'nullable|string',
+            'descripcion' => 'required|string',
             'fecha' => 'required|date',
             'completada' => 'boolean'
         ]);
@@ -126,7 +126,7 @@ class SesionesController extends Controller
         $validated = $request->validate([
             'id_plan' => 'required|integer|exists:plan_entrenamiento,id',
             'nombre' => 'required|string|max:255',
-            'descripcion' => 'nullable|string',
+            'descripcion' => 'required|string',
             'fecha' => 'required|date',
             'completada' => 'boolean'
         ]);
