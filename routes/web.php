@@ -28,11 +28,21 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Ruta para planes
 Route::get('/planes', [PlanesController::class, 'index'])->name('planes')->middleware('auth');
+Route::get('/planes/create', [PlanesController::class, 'create'])->name('planes.create')->middleware('auth');
+Route::post('/planes', [PlanesController::class, 'store'])->name('planes.store')->middleware('auth');
 Route::get('/planes/{id}', [PlanesController::class, 'show'])->name('planes.show')->middleware('auth');
+Route::get('/planes/{id}/edit', [PlanesController::class, 'edit'])->name('planes.edit')->middleware('auth');
+Route::put('/planes/{id}', [PlanesController::class, 'update'])->name('planes.update')->middleware('auth');
+Route::delete('/planes/{id}', [PlanesController::class, 'destroy'])->name('planes.destroy')->middleware('auth');
 
 // Rutas para sesiones
 Route::get('/sesiones', [SesionesController::class, 'index'])->name('sesiones')->middleware('auth');
+Route::get('/sesiones/create', [SesionesController::class, 'create'])->name('sesiones.create')->middleware('auth');
+Route::post('/sesiones', [SesionesController::class, 'store'])->name('sesiones.store')->middleware('auth');
 Route::get('/sesiones/{id}', [SesionesController::class, 'show'])->name('sesiones.show')->middleware('auth');
+Route::get('/sesiones/{id}/edit', [SesionesController::class, 'edit'])->name('sesiones.edit')->middleware('auth');
+Route::put('/sesiones/{id}', [SesionesController::class, 'update'])->name('sesiones.update')->middleware('auth');
+Route::delete('/sesiones/{id}', [SesionesController::class, 'destroy'])->name('sesiones.destroy')->middleware('auth');
 
 // Rutas para bicicletas
 Route::get('/bicicletas', [BicicletasController::class, 'index'])->name('bicicletas')->middleware('auth');
