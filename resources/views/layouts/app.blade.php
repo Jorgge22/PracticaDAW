@@ -19,6 +19,12 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <!-- CSS -->
+    <link href="{{ asset('css/menu.css') }}" rel="stylesheet">
+
+    <!-- JavaScript -->
+    <script src="{{ asset('js/menu-app.js') }}" defer></script>
+
     <!-- Scripts -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
@@ -91,8 +97,6 @@
             @yield('content')
         </main>
     </div>
-
-    <script src="{{ asset('js/menu-app.js') }}"></script>
 </body>
 
 </html>

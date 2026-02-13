@@ -39,7 +39,6 @@ Comprobar los usuarios en bbdd `docker compose exec -T db mysql -u daw_user -pda
 **Primera vez (crear imagen e iniciar):**
 
 ``` docker
-docker compose down -v
 docker compose build app
 docker compose up -d
 docker compose exec -T app php artisan key:generate
