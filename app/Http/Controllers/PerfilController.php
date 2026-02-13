@@ -49,9 +49,12 @@ class PerfilController extends Controller
         ]);
 
         // Solo actualizar campos que no estén vacíos
-        $data = array_filter($validated, function($value) {
-            return !is_null($value) && $value !== '';
-        });
+        $data = [];
+        foreach ($validated as $key => $value) {
+            if (!is_null($value) && $value !== '') {
+                $data[$key] = $value;
+            }
+        }
 
         // Si se proporcionó una nueva contraseña, hashearla antes de guardar
         if (isset($data['password'])) {
