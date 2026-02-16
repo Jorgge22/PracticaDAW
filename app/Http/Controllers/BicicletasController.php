@@ -36,4 +36,34 @@ class BicicletasController extends Controller
         // Mostrar la vista con los detalles de la bicicleta
         return view('bicicletas.show', ['bicicleta' => $bicicleta]);
     }
+
+    public function create () {
+        return view('bicicletas.store');
+    }
+
+    public function store (Request $request) {
+        // Validar los datos que se van a introducir
+        $validar = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'tipo' => 'required|in:carretera,mtb,gravel,rodillo',
+            'comentario' => 'required|string|max:255'
+        ]);
+
+        // Insertar los nuevos valores
+        DB::table('bicicleta')->insert($validar);
+
+        return redirect()->route('bicicletas');
+    }
+
+    public function edit () {
+
+    }
+
+    public function update (){
+        
+    }
+
+    public function destroy () {
+        
+    }
 }

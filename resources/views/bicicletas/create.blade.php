@@ -1,0 +1,71 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm">
+                    <!-- Titulo -->
+                    <div class="card-header bg-success text-white">
+                        <h4 class="mb-0">Crear Nueva Bicicleta</h4>
+                    </div>
+
+                    <!-- Formulario -->
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('bicicletas.store') }}">
+                            @csrf
+
+                            <!-- Nombre -->
+                            <div class="row mb-3">
+                                <label for="nombre" class="col-md-4 col-form-label text-md-end">Nombre *</label>
+
+                                <div class="col-md-6">
+                                    <input id="nombre" type="text"
+                                        class="form-control @error('nombre') is-invalid @enderror" name="nombre"
+                                        value="{{ old('nombre') }}" placeholder="Ej: Tacx NEO2" autocomplete="off"
+                                        required>
+
+                                    @error('nombre')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <!-- Comentario -->
+                            <div class="row mb-3">
+                                <label for="comentario" class="col-md-4 col-form-label text-md-end">Comentario</label>
+
+                                <div class="col-md-6">
+                                    <textarea id="comentario"
+                                        class="form-control @error('comentario') is-invalid @enderror" name="comentario"
+                                        rows="3"
+                                        placeholder="Añade un comentario sobre la bicicleta">{{ old('comentario') }}</textarea>
+
+                                    @error('comentario')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <!-- Botones de acción -->
+                            <div class="row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-success">
+                                        Crear Bicicleta
+                                    </button>
+                                    <a href="{{ route('bicicletas') }}" class="btn btn-secondary">
+                                        Cancelar
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
