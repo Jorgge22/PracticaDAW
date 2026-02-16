@@ -50,6 +50,8 @@ Route::get('/bicicletas/{id}', [BicicletasController::class, 'show'])->name('bic
 Route::get('/bicicletas/create', [BicicletasController::class, 'create'])->name('bicicletas.create')->middleware('auth');
 Route::get('/bicicletas/{id}/edit', [BicicletasController::class])->name('bicicletas.edit')->middleware('auth');
 Route::put('/bicicletas/{id}', [BicicletasController::class])->name('bicicletas.update')->middleware('auth');
+Route::delete('/bicicletas/{id}',[BicicletasController::class])->name('bicicletas.destroy')->middleware('auth');
+Route::post('/bicicletas', [BicicletasController::class])->name('bicicletas.store')->middleware('auth');
 
 // Rutas para bloques de entrenamiento
 Route::get('/bloques', [BloquesController::class, 'index'])->name('bloques')->middleware('auth');
