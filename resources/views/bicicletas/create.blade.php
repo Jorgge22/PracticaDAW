@@ -33,6 +33,27 @@
                                 </div>
                             </div>
 
+                            <!-- Tipo -->
+                            <div class="row mb-3">
+                                <label for="tipo" class="col-md-4 col-form-label text-md-end">Tipo *</label>
+
+                                <div class="col-md-6">
+                                    <select id="tipo" name="tipo" class="form-control @error('tipo') is-invalid @enderror" required>
+                                        <option value="" disabled {{ old('tipo') ? '' : 'selected' }}>Selecciona un tipo</option>
+                                        <option value="carretera" {{ old('tipo') == 'carretera' ? 'selected' : '' }}>Carretera</option>
+                                        <option value="mtb" {{ old('tipo') == 'mtb' ? 'selected' : '' }}>MTB</option>
+                                        <option value="gravel" {{ old('tipo') == 'gravel' ? 'selected' : '' }}>Gravel</option>
+                                        <option value="rodillo" {{ old('tipo') == 'rodillo' ? 'selected' : '' }}>Rodillo</option>
+                                    </select>
+
+                                    @error('tipo')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <!-- Comentario -->
                             <div class="row mb-3">
                                 <label for="comentario" class="col-md-4 col-form-label text-md-end">Comentario</label>

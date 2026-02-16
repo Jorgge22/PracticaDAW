@@ -46,12 +46,12 @@ Route::delete('/sesiones/{id}', [SesionesController::class, 'destroy'])->name('s
 
 // Rutas para bicicletas
 Route::get('/bicicletas', [BicicletasController::class, 'index'])->name('bicicletas')->middleware('auth');
-Route::get('/bicicletas/{id}', [BicicletasController::class, 'show'])->name('bicicletas.show')->middleware('auth');
 Route::get('/bicicletas/create', [BicicletasController::class, 'create'])->name('bicicletas.create')->middleware('auth');
-Route::get('/bicicletas/{id}/edit', [BicicletasController::class])->name('bicicletas.edit')->middleware('auth');
-Route::put('/bicicletas/{id}', [BicicletasController::class])->name('bicicletas.update')->middleware('auth');
-Route::delete('/bicicletas/{id}',[BicicletasController::class])->name('bicicletas.destroy')->middleware('auth');
-Route::post('/bicicletas', [BicicletasController::class])->name('bicicletas.store')->middleware('auth');
+Route::post('/bicicletas', [BicicletasController::class, 'store'])->name('bicicletas.store')->middleware('auth');
+Route::get('/bicicletas/{id}', [BicicletasController::class, 'show'])->name('bicicletas.show')->middleware('auth');
+Route::get('/bicicletas/{id}/edit', [BicicletasController::class, 'edit'])->name('bicicletas.edit')->middleware('auth');
+Route::put('/bicicletas/{id}', [BicicletasController::class, 'update'])->name('bicicletas.update')->middleware('auth');
+Route::delete('/bicicletas/{id}',[BicicletasController::class, 'destroy'])->name('bicicletas.destroy')->middleware('auth');
 
 // Rutas para bloques de entrenamiento
 Route::get('/bloques', [BloquesController::class, 'index'])->name('bloques')->middleware('auth');

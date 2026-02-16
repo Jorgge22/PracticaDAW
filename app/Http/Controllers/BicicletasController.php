@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bicicleta;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -21,32 +22,18 @@ class BicicletasController extends Controller
         return view('bicicletas.index', ['bicicletas' => $bicicletas]);
     }
 
-    public function show($id)
+    public function create()
     {
-        // Obtener una bicicleta específica por su ID
-        $bicicleta = DB::table('bicicleta')
-            ->where('id', $id)
-            ->first();
-
-        // Si no se encuentra la bicicleta, mostrar un error 404
-        if (!$bicicleta) {
-            abort(404);
-        }
-
-        // Mostrar la vista con los detalles de la bicicleta
-        return view('bicicletas.show', ['bicicleta' => $bicicleta]);
+        return view('bicicletas.create');
     }
 
-    public function create () {
-        return view('bicicletas.store');
-    }
-
-    public function store (Request $request) {
+    public function store(Request $request)
+    {
         // Validar los datos que se van a introducir
         $validar = $request->validate([
             'nombre' => 'required|string|max:255',
             'tipo' => 'required|in:carretera,mtb,gravel,rodillo',
-            'comentario' => 'required|string|max:255'
+            'comentario' => 'string|max:255'
         ]);
 
         // Insertar los nuevos valores
@@ -55,15 +42,66 @@ class BicicletasController extends Controller
         return redirect()->route('bicicletas');
     }
 
-    public function edit () {
+    public function show($id)
+    {
+        $bici = DB::table('bicicleta')->where('id', $id)->first();
 
+        if (! $bici) {
+            abort(404);
+        }
+
+        return view('bicicletas.edit', ['bicicleta' => $bici]);
     }
 
-    public function update (){
-        
+    public function edit($id)
+    {
+        $bici = DB::table('bicicleta')
+            ->where('id', $id) 
+            ->first();
+
+        if (! $bici) {
+            abort(404);
+        }
+
+        return view('bicicletas.edit', ['bicicleta' => $bici]);
     }
 
-    public function destroy () {
-        
+    public function update(Request $request, $id)
+    {
+        $validar = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'tipo' => 'required|in:carretera,mtb,gravel,rodillo',
+            'comentario' => 'string|max:255'
+        ]);
+
+        $bici = DB::table('bicicleta')
+            ->where('id', $id) 
+            ->first();
+
+        if (! $bici) {
+            abort(404);
+        }
+
+        DB::table('bicicleta')
+            ->where('id', $id)
+            ->update($validar);
+
+        return redirect()->route('bicicletas', $id);
+    }
+
+    public function destroy($id)
+    {
+        // Buscar la bicicleta por el id recibido
+        $bici = DB::table('bicicleta')->where('id', $id)->first();
+
+        if (! $bici) {
+            abort(404);
+        }
+
+        // Eliminar la bicicleta
+        DB::table('bicicleta')->where('id', $id)->delete();
+
+        // Redirigir a la lista de bicicletas
+        return redirect()->route('bicicletas');
     }
 }
