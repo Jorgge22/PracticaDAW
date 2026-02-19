@@ -55,11 +55,21 @@ Route::delete('/bicicletas/{id}',[BicicletasController::class, 'destroy'])->name
 
 // Rutas para bloques de entrenamiento
 Route::get('/bloques', [BloquesController::class, 'index'])->name('bloques')->middleware('auth');
+Route::get('/bloques/create', [BloquesController::class, 'create'])->name('bloques.create')->middleware('auth');
+Route::post('/bloques', [BloquesController::class, 'store'])->name('bloques.store')->middleware('auth');
 Route::get('/bloques/{id}', [BloquesController::class, 'show'])->name('bloques.show')->middleware('auth');
+Route::get('/bloques/{id}/edit', [BloquesController::class, 'edit'])->name('bloques.edit')->middleware('auth');
+Route::put('/bloques/{id}', [BloquesController::class, 'update'])->name('bloques.update')->middleware('auth');
+Route::delete('/bloques/{id}', [BloquesController::class, 'destroy'])->name('bloques.destroy')->middleware('auth');
 
 // Rutas para resultados
 Route::get('/resultados', [ResultadosController::class, 'index'])->name('resultados')->middleware('auth');
+Route::get('/resultados/create', [ResultadosController::class, 'create'])->name('resultados.create')->middleware('auth');
+Route::post('/resultados', [ResultadosController::class, 'store'])->name('resultados.store')->middleware('auth');
 Route::get('/resultados/{id}', [ResultadosController::class, 'show'])->name('resultados.show')->middleware('auth');
+Route::get('/resultados/{id}/edit', [ResultadosController::class, 'edit'])->name('resultados.edit')->middleware('auth');
+Route::put('/resultados/{id}', [ResultadosController::class, 'update'])->name('resultados.update')->middleware('auth');
+Route::delete('/resultados/{id}', [ResultadosController::class, 'destroy'])->name('resultados.destroy')->middleware('auth');
 
 // Perfil del usuario
 Route::get('/perfil', [PerfilController::class, 'index'])->name('perfil')->middleware('auth'); //middleware para proteger la ruta y que solo usuarios autenticados puedan acceder
