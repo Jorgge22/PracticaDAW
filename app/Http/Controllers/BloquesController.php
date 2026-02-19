@@ -32,7 +32,7 @@ class BloquesController extends Controller
         $validar = $request->validate([
             'nombre' => 'required|string|max:255',
             'descripcion' => 'string|max:500',
-            'tipo' => 'required|string|max:100',
+            'tipo' => 'required|in:rodaje,intervalos,fuerza,recuperacion,test',
             'duracion_estimada' => 'integer|min:0',
             'potencia_pct_min' => 'integer|min:0|max:100',
             'potencia_pct_max' => 'integer|min:0|max:100',
@@ -80,7 +80,7 @@ class BloquesController extends Controller
         $validar = $request->validate([
             'nombre' => 'required|string|max:255',
             'descripcion' => 'string|max:500',
-            'tipo' => 'required|string|max:100',
+            'tipo' => 'required|in:rodaje,intervalos,fuerza,recuperacion,test',
             'duracion_estimada' => 'integer|min:0',
             'potencia_pct_min' => 'integer|min:0|max:100',
             'potencia_pct_max' => 'integer|min:0|max:100',

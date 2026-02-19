@@ -56,9 +56,14 @@
                                 <label for="tipo" class="col-md-4 col-form-label text-md-end">Tipo *</label>
 
                                 <div class="col-md-6">
-                                    <input id="tipo" type="text"
-                                        class="form-control @error('tipo') is-invalid @enderror" name="tipo"
-                                        value="{{ old('tipo', $bloque->tipo) }}" autocomplete="off" required>
+                                    <select id="tipo" name="tipo" class="form-control @error('tipo') is-invalid @enderror" required>
+                                        <option value="" disabled {{ old('tipo', $bloque->tipo) ? '' : 'selected' }}>Selecciona un tipo</option>
+                                        <option value="rodaje" {{ old('tipo', $bloque->tipo) == 'rodaje' ? 'selected' : '' }}>Rodaje</option>
+                                        <option value="intervalos" {{ old('tipo', $bloque->tipo) == 'intervalos' ? 'selected' : '' }}>Intervalos</option>
+                                        <option value="fuerza" {{ old('tipo', $bloque->tipo) == 'fuerza' ? 'selected' : '' }}>Fuerza</option>
+                                        <option value="recuperacion" {{ old('tipo', $bloque->tipo) == 'recuperacion' ? 'selected' : '' }}>Recuperación</option>
+                                        <option value="test" {{ old('tipo', $bloque->tipo) == 'test' ? 'selected' : '' }}>Test</option>
+                                    </select>
 
                                     @error('tipo')
                                         <span class="invalid-feedback" role="alert">
